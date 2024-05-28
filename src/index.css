@@ -13,9 +13,7 @@
   font-weight: bold;
   border-bottom: 1px solid #f2f2f2;
 }
-.navbar h1 {
-  color: #f1356d;
-}
+
 .navbar .links {
   margin-left: 0;
   display: flex;
@@ -27,7 +25,7 @@
   padding: 6px;
 }
 .navbar a:hover {
-  color: #f1356d;
+  color: rgb(245, 103, 68);
 }
 .content {
   font-weight: bold;
@@ -47,7 +45,7 @@
 }
 .blog-preview h2 {
   font-size: 20px;
-  color: #f1356d;
+  color: rgb(245, 103, 68);
   margin-bottom: 8px;
 }
 .blog-preview a{
@@ -57,14 +55,14 @@
 /* blog details page */
 .blog-details h2 {
   font-size: 20px;
-  color: #f1356d;
+  color: rgb(245, 103, 68);
   margin-bottom: 10px;
 }
 .blog-details div {
   margin: 20px 0;
 }
 .blog-details button {
-  background: #f1356d;
+  background: rgb(245, 103, 68);
   color: #fff;
   border: 0;
   padding: 8px;
@@ -124,12 +122,12 @@
 {margin-left: 10px;
   font-size: 15px;
   background: white;
-  border-bottom: 4px solid red;
+  border-bottom: 4px solid rgb(245, 103, 68);
   color: black;
   }
 
 .formal{font-family: "Arial";font-weight: bold;background-color:rgb(248, 245, 215);background-image:"formal.png";}
-.casual{font-family: "calibri";background-color:rgb(229, 241, 224);background-image:"casual.png";}
+.casual{font-family: "calibri";background-color:rgb(50, 68, 43);background-image:"casual.png";}
 .friendly{font-family: "Georgia";font-style: italic;background-color:rgb(210, 250, 247);}
 .neutral{font-family: "Times New Roman";background-color:rgb(248, 233, 232);}
   
