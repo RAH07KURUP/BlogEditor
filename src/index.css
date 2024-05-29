@@ -123,11 +123,11 @@
   font-size: 15px;
   background: white;
   border-bottom: 4px solid rgb(245, 103, 68);
-  color: black;
+  color: rgb(245, 103, 68);
   }
 
 .formal{font-family: "Arial";font-weight: bold;background-color:rgb(248, 245, 215);background-image:"formal.png";}
-.casual{font-family: "calibri";background-color:rgb(50, 68, 43);background-image:"casual.png";}
+.casual{font-family: "calibri";background-color:rgb(216, 246, 204);background-image:"casual.png";}
 .friendly{font-family: "Georgia";font-style: italic;background-color:rgb(210, 250, 247);}
 .neutral{font-family: "Times New Roman";background-color:rgb(248, 233, 232);}
   
