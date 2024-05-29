@@ -5,7 +5,7 @@ const BlogEditor = ({blog,i}) => {
   const [text, setText] = useState(blog.body);
   const [selectedTone, setSelectedTone] = useState('neutral');
   const [flg, setflg] = useState(0);
-  const [imageSrc, setImageSrc] = useState("nd");
+  const [imageSrc, setImageSrc] = useState(null);
   const history = useHistory();const title=blog.title,keywords=blog.keywords;
 
   const handleChange = (event) => {
@@ -53,7 +53,9 @@ const BlogEditor = ({blog,i}) => {
   };
 
   return (
+    
     <div style={{display:"flex", flexDirection:"column"}}>
+      {flg==0 && <div style={{marginLeft:"70px"}}>Select a Tone for your Blog</div>}
       {flg==0 && <select value={selectedTone} onChange={handleToneChange} style={{fontWeight:"bold"}}>
         <option value="formal">Formal</option>
         <option value="casual">Casual</option>
@@ -70,7 +72,7 @@ const BlogEditor = ({blog,i}) => {
         cols={50}
       />}
       <br/>
-      {imageSrc!=null && <img src={imageSrc} align="center" alt="Blog-Image"/>}
+      {imageSrc!=null && <img src={imageSrc} style={{marginLeft:"125px"}} alt="Blog-Image"/>}
       {flg==1 && <input type="file" accept="image/*" onChange={handleImageUpload}/>}
       
       {flg==1 && <button onClick={handleSave}>Save</button>}
