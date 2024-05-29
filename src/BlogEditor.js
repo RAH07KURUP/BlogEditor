@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import JoditEditor from "jodit-react";
+import HTMLReactParser from "html-react-parser";
+import { useRef, useMemo } from "react";
 
 const BlogEditor = ({blog,i}) => {
-  const [text, setText] = useState(blog.body);
+  const editor = useRef(null);//for joditEditor
+
+
   const [selectedTone, setSelectedTone] = useState('neutral');
   const [flg, setflg] = useState(0);
-  const [imageSrc, setImageSrc] = useState(null);
   const history = useHistory();const title=blog.title,keywords=blog.keywords;
 
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
+  const [content, setContent] = useState(blog.body);
+  const [edit, setedit] = useState(0);
+
 
   const handleToneChange = (event) => {
     setSelectedTone(event.target.value);
@@ -22,24 +26,20 @@ const BlogEditor = ({blog,i}) => {
     console.log(`Generating blog with tone: ${selectedTone}`);
   };
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      setImageSrc(event.target.result);
-      console.log(imageSrc);
+  const handleCancel = ()=> {
+    setedit(0);
     };
-    // You can upload the file to a server or use it directly
-    // For now, let's just display the file name in the text area
-  };
-
+  
+    const handleEdit = ()=> {
+      setedit(1);
+      };
  
 
-  const handleSave = () => {
+  const handleSave = () => {setedit(1);
     fetch('http://localhost:8000/' +i+"/"+blog.id, {
       method: 'DELETE'
     }).then(() => {
-        const blog = { title, body:text, keywords };
+        const blog = { title, body:content, keywords };
         fetch('http://localhost:8000/'+i, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
@@ -62,20 +62,22 @@ const BlogEditor = ({blog,i}) => {
         <option value="friendly">Friendly</option>
         <option value="neutral">Neutral</option>
       </select>}
-      {flg==0 && <button style={{display:"inline"}} onClick={handleGenerate}>Generate</button>}
+      {flg==0 && <button style={{background:"rgb(245, 103, 68)",maxWidth:"80px",color:"#fff",fontWeight:"bold"}} onClick={handleGenerate}>Generate</button>}
       <br/>
-      {flg==1 && <h2>{ blog.title }</h2>}
-      {flg==1 && <textarea className={selectedTone} contenteditable="true" style={{border:"none",height:"400px",width:"700px"}}
-        value={text}
-        onChange={handleChange}
-        rows={10}
-        cols={50}
+      {flg==1 && <h2 style={{fontFamily:"Arial",fontWeight:"bold",fontStyle:"italic",fontSize:"40px",color:"blue",textDecoration:"underline"}}>{ blog.title }</h2>}
+      {flg==1 && <div className={selectedTone}>{HTMLReactParser(content)}</div>}
+      {flg==1 && edit==0 && <button style={{background:"rgb(245, 103, 68)",maxWidth:"80px", color:"#fff",fontWeight:"bold"}}  onClick={handleEdit}>Edit</button>}
+      {flg==1 && edit==1 && <JoditEditor editclassName={selectedTone}
+        ref={editor}
+        value={content}
+        onChange={(newContent) => setContent(newContent)}
       />}
       <br/>
-      {imageSrc!=null && <img src={imageSrc} style={{marginLeft:"125px"}} alt="Blog-Image"/>}
-      {flg==1 && <input type="file" accept="image/*" onChange={handleImageUpload}/>}
+      <div style={{display:"flex"}}>
+      {flg==1 && edit==1 && <button style={{background:"rgb(245, 103, 68)",maxWidth:"80px",color:"#fff",fontWeight:"bold"}}  onClick={handleCancel}>Cancel</button>}
       
-      {flg==1 && <button onClick={handleSave}>Save</button>}
+      {flg==1 && edit==1 && <button style={{background:"rgb(245, 103, 68)",marginLeft:"7px",display:"inline",maxWidth:"80px", color:"#fff",fontWeight:"bold"}}  onClick={handleSave}>Save</button>}
+      </div>
     </div>
   );
 };
