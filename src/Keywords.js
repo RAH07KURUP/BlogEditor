@@ -1,11 +1,11 @@
-const Keywords = ({i,ele}) => {
-  
+const Keywords = ({i,ele}) => {let cls;
+  switch((i%3))
+  {case(0): cls="key1";break;
+  case(1): cls="key2";break;
+  case(2): cls="key3";break;
+  }
       return (
-        <div key={i} style={{display:"inline"}}>
-          {(i%3)==0 && <div className="key1" style={{display:"inline" }}>{ele}</div>}
-          {(i%3)==1 && <div className="key2" style={{display:"inline"}}>{ele}</div>}
-          {(i%3)==2 && <div className="key3" style={{display:"inline"}}>{ele}</div>}
-       </div>
+          <div className={cls} style={{display:"inline" }}>{ele}</div>
       );
 }
      
