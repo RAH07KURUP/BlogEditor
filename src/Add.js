@@ -39,7 +39,8 @@ const Add = ({inx}) => {
           value={keywords} placeholder="Enter Keywords seperated by comas (' , ')" 
           onChange={(e) => {const keys=e.target.value.split(',');setKeywords(keys);}}
         ></textarea>
-        <button>Add Blog</button>
+        <button className="blog-details" style={{background:"rgb(245, 103, 68)", color:"#fff",fontWeight:"bold",border:"0",
+  padding: "8px",borderRadius:"8px"}}>Add Blog</button>
       </form>
     </div>
   );
