@@ -23,7 +23,7 @@ const BlogDetails = ({i}) => {
        
           <div><BlogEditor blog={blog} i={i}/></div>
           <br/>
-          <button onClick={handleClick}>Delete</button>
+          <button style={{background:"rgb(245, 103, 68)", color:"#fff",fontWeight:"bold"}} onClick={handleClick}>Delete</button>
         </article>
       )}
     </div>
