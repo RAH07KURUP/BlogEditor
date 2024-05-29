@@ -13,7 +13,10 @@ const BlogEditor = ({blog,i}) => {
   const history = useHistory();const title=blog.title,keywords=blog.keywords;
 
   const [content, setContent] = useState(blog.body);
+  const [lsbody, setls] = useState("");
+
   const [edit, setedit] = useState(0);
+  
 
 
   const handleToneChange = (event) => {
@@ -27,10 +30,12 @@ const BlogEditor = ({blog,i}) => {
   };
 
   const handleCancel = ()=> {
+    setContent(lsbody);
     setedit(0);
     };
   
     const handleEdit = ()=> {
+      setls(content);
       setedit(1);
       };
  
